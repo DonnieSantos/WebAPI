@@ -1,0 +1,27 @@
+﻿<html>
+<body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".item-button").click(function () {
+                $.ajax({
+                    'type': 'POST',
+                    'url': "api/items",
+                    'data': JSON.stringify( { 'Name': $(".item-name").val(), 'Weight': parseFloat($(".item-weight").val()) } ),
+                    headers: { 'Content-Type': 'application/json' },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <input class="item-name" type="text" value="" /> (Item Name) <br />
+    <input class="item-weight" type="text" value="" /> (Item Weight) <br />
+    <input class="item-button" type="button" value="POST" /><br />
+
+</body>
+</html>
