@@ -9,3 +9,14 @@ D:\Users\Donnie\Desktop\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.AssemblyInf
 D:\Users\Donnie\Desktop\WebAPI\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.pdb
 D:\Users\Donnie\Desktop\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.dll
 D:\Users\Donnie\Desktop\WebAPI\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.pdb
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.deps.json
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.runtimeconfig.json
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.runtimeconfig.dev.json
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.dll
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\bin\Debug\netcoreapp2.0\WebAPI.pdb
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.csprojResolveAssemblyReference.cache
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.AssemblyInfoInputs.cache
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.AssemblyInfo.cs
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.dll
+C:\Users\Donnie\source\repos\WebAPI\WebAPI Basics\WebAPI\obj\Debug\netcoreapp2.0\WebAPI.pdb
