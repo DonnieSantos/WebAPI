@@ -1,4 +1,4 @@
-# Microsoft .NET Web API Tutorial
+# Microsoft ASP.NET Core Web API Tutorial
 
 ## Step 1.) In Visual Studio 2017, create a new ASP.NET Core Web Application.
 
