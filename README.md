@@ -2,11 +2,11 @@
 
 ## Step 1.) In Visual Studio 2017, create a new ASP.NET Core Web Application.
 
-![ASP.NET Core Web Application](1-Core.png)
+![ASP.NET Core Web Application](images/1-Core.png)
 
 ## Step 2.) Select "**API**" as the Project Template, also selecting ASP.NET Core.
 
-![ASP.NET Core Web Application](2-API.png)
+![ASP.NET Core Web Application](images/2-API.png)
 
 ## Step 3.) Add a Controller and your first Data Model.
 
@@ -23,11 +23,11 @@ Start off by creating any simple data model class to store primitive values.
 
 Add a new Controller Class to the **Controllers** folder.
 
-![ASP.NET Core Web Application](3-Controllers.png)
+![ASP.NET Core Web Application](images/3-Controllers.png)
 
 Make sure you select the Controller Type as "**API**".
 
-![ASP.NET Core Web Application](3-APIControllerSelect.png)
+![ASP.NET Core Web Application](images/3-APIControllerSelect.png)
 
 You can start with a simple **Controller** that only has a ***Get*** method.
 
@@ -55,7 +55,7 @@ You can start with a simple **Controller** that only has a ***Get*** method.
 
 With your Controller complete, you can launch your API and direct your browser to it.
 
-![ASP.NET Core Web Application](4-GET.png)
+![ASP.NET Core Web Application](images/4-GET.png)
 
 Keep in mind that your **launchSettings.json** file controls the location of your API.
 
@@ -81,11 +81,11 @@ Keep in mind that your **launchSettings.json** file controls the location of you
 
 Add another new Controller Class to the **Controllers** folder.
 
-![ASP.NET Core Web Application](3-Controllers.png)
+![ASP.NET Core Web Application](images/3-Controllers.png)
 
 Make sure you select the Controller Type as "**MVC**".
 
-![ASP.NET Core Web Application](5-MVCControllerSelect.png)
+![ASP.NET Core Web Application](images/5-MVCControllerSelect.png)
 
 Name this Controller something generic, like "*Home*", and do not modify the default code.
 
@@ -103,11 +103,11 @@ Add a root level folder "Views" with a sub-folder with the same Controller name 
 
 Right click on ***/Views/Home*** in the Solution Explorer and select Add New View. Name it "Index".
 
-![ASP.NET Core Web Application](6-View.png)
+![ASP.NET Core Web Application](images/6-View.png)
 
 Your folder structure should now look like this.
 
-![ASP.NET Core Web Application](7-Folders.png)
+![ASP.NET Core Web Application](images/7-Folders.png)
 
 ### Now we have to do a little house keeping.
 
@@ -169,7 +169,7 @@ I guess we should also probably put some actual HTML in the View. :)
 
 We now will see our Test Page (Home) launch when we run our API.
 
-![ASP.NET Core Web Application](8-HelloWorld.png)
+![ASP.NET Core Web Application](images/8-HelloWorld.png)
 
 ## Step 5.) Use our Test Page to do a POST to our API.
 
@@ -223,11 +223,11 @@ Writing front-end script is a little tedious, but we can use JQuery.ajax to easi
 
 Now just launch the test page and POST to the API.
 
-![ASP.NET Core Web Application](9-UI.png)
+![ASP.NET Core Web Application](images/9-UI.png)
 
 Your Controller POST method should receive the de-serialized object with the correct values. Magic!
 
-![ASP.NET Core Web Application](9-Worked.png)
+![ASP.NET Core Web Application](images/9-Worked.png)
 
 ## Step 6.) Adding Session
 
@@ -309,7 +309,7 @@ This will allow us to retrieve it later, since the Session can identify us a uni
 
 This is live Web API Server Session Data being retrieved based on our unique client request.
 
-![ASP.NET Core Web Application](9-WorkedFinal.png)
+![ASP.NET Core Web Application](images/9-WorkedFinal.png)
 
 ## Step 8.) Collections, Indexing, and Parameters
 
@@ -354,6 +354,9 @@ This is live Web API Server Session Data being retrieved based on our unique cli
 # Step 9.) Do More Stuff!
 
 ### This WebAPI is just to show you how to get started. For some more advanced examples, see my other solution in this same code repository on github.
+
+ * https://github.com/DonnieSantos/WebAPI/tree/master/WebAPI%20Basics
+ * https://github.com/DonnieSantos/WebAPI/tree/master/MyWebAPI
 
 # Credits
 
