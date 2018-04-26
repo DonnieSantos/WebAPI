@@ -1,0 +1,175 @@
+﻿<html>
+
+<head>
+    <title>MyWebAPI Test Client</title>
+    <link rel="shortcut icon" href="">
+</head>
+
+<body>
+
+    <style>
+        body {
+            font-family: Calibri;
+        }
+        input {
+            display: block;
+        }
+        .container {
+            width: 450px;
+            border: 1px solid black;
+            padding: 15px;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .inline {
+            display: inline-block;
+        }
+        .block {
+            display: block;
+        }
+        .label {
+            width: 150px;
+            margin-right: 20px;
+        }
+        .text {
+            margin-bottom: 20px;
+        }
+        .api {
+            padding: 5px;
+            width: 450px;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(".student-get").click(function () {
+
+                alert("Getting from <api/Students>.")
+
+                var minimumGrade = $(".student-min-grade").val();
+
+                if (minimumGrade.length > 0) {
+                    alert("Minimum grade filter is: " + minimumGrade + ".");
+                }
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    data: { minimumGrade: minimumGrade },
+                    'type': 'GET',
+                    'url': "api/Students",
+                    success: function (data) {
+                        alert("POST Success");
+                        alert(JSON.stringify(data));
+                    },
+                    error: function () {
+                        alert("POST Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
+            $(".student-post").click(function () {
+
+                alert("Posting to <api/Students>.");
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    'type': 'POST',
+                    'url': "api/Students",
+                    success: function () {
+                        alert("POST Success");
+                    },
+                    error: function () {
+                        alert("POST Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
+            $(".student-add").click(function () {
+
+                var payloadJsonObject =
+                    {
+                        "name": $(".student-name").val(),
+                        "id": parseInt($(".student-id").val()),
+                        "grade": parseInt($(".student-grade").val())
+                    };
+
+                var payloadJsonString = JSON.stringify(payloadJsonObject);
+
+                alert("Posting to <api/Students> with the JSON Payload <" + payloadJsonString + ">.")
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    'type': 'POST',
+                    'url': "api/AddStudent",
+                    'data': payloadJsonString,
+                    success: function () {
+                        alert("POST Success");
+                    },
+                    error: function () {
+                        alert("POST Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+        });
+
+    </script>
+
+    <div class="container">
+        <div class="header">Get All Students</div>
+        <div class="block">
+            <div class="inline label">Minimum Grade Filter</div>
+            <input class="inline text student-min-grade" type="text" />
+        </div>
+        <input class="api student-get" type="button" value="StudentsController.GET" />
+    </div>
+
+    <div class="container">
+        <div class="header">Add New Student</div>
+        <div class="block">
+            <div class="inline label">Student Name</div>
+            <input class="inline text student-name" type="text" />
+        </div>
+        <div class="block">
+            <div class="inline label">Student LID</div>
+            <input class="inline text student-id" type="text" />
+        </div>
+        <div class="block">
+            <div class="inline label">Student Grade</div>
+            <input class="inline text student-grade" type="text" />
+        </div>
+        <input class="api student-add" type="button" value="AddStudentController.POST" />
+    </div>
+
+    <div class="container">
+        <div class="header">Remove All Students</div>
+        <input class="api student-post" type="button" value="StudentsController.POST" />
+    </div>
+
+</body>
+
+</html>
