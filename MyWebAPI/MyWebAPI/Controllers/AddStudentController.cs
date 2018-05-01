@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MyWebAPI.Controllers
+namespace MyWebAPI
 {
     [Route("api/[controller]")]
     public class AddStudentController : Controller
@@ -8,9 +8,9 @@ namespace MyWebAPI.Controllers
         [HttpPost]
         public void Post([FromBody]Student student)
         {
-            var students = HttpContext.Session.GetStudents();
-            students.Add(student);
-            HttpContext.Session.Set(SessionKey.Students, students);
+            var students = Student.GetFromSession(HttpContext);
+            students.Add(student.ID, student);
+            Student.SetToSession(HttpContext, students);
         }
     }
 }

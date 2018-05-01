@@ -1,36 +1,50 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.Linq;
 
-namespace MyWebAPI.Controllers
+namespace MyWebAPI
 {
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class StudentsController : Controller
     {
-        public string MinimumGrade
-        {
-            get { return HttpContext.Request.Query["minimumGrade"]; }
-        }
-
         [HttpGet]
-        public IList<Student> Get()
+        public Dictionary<int, Student> Get(CheckBox onlyShowStudentsFailingACourse)
         {
-            if (string.IsNullOrEmpty(MinimumGrade)) return HttpContext.Session.GetStudents();
-            int minimumGrade = int.Parse(HttpContext.Request.Query["minimumGrade"].ToString());
-            return HttpContext.Session.GetStudents().Where(student => { return student.Grade >= minimumGrade; }).ToList();
+            if (onlyShowStudentsFailingACourse.IsChecked)
+            {
+                var allStudents = Student.GetFromSession(HttpContext);
+                var filteredStudents = new Dictionary<int, Student>();
+
+                foreach (Student student in allStudents.Values)
+                {
+                    if (IsStudentFailingAnyCourse(student.ID))
+                    {
+                        filteredStudents.Add(student.ID, student);
+                    }
+                }
+
+                return filteredStudents;
+            }
+
+            return Student.GetFromSession(HttpContext);
         }
 
-        [HttpGet("{index}", Name = "Get")]
-        public Student Get(int index)
+        private bool IsStudentFailingAnyCourse(int studentID)
         {
-            return HttpContext.Session.GetStudents()[index];
-        }
+            var courses = Course.GetFromSession(HttpContext);
 
-        [HttpPost]
-        public void Post([FromBody]IList<Student> students)
-        {
-            HttpContext.Session.ClearStudents();
+            foreach (Course course in courses.Values)
+            {
+                if (course.Grades.ContainsKey(studentID))
+                {
+                    if (course.Grades[studentID] < 60)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

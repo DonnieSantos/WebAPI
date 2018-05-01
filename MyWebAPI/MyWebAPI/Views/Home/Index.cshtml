@@ -7,41 +7,64 @@
 
 <body>
 
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////// Styles //////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
     <style>
-        body {
-            font-family: Calibri;
-        }
         input {
             display: block;
         }
-        .container {
-            width: 450px;
-            border: 1px solid black;
-            padding: 15px;
+
+        body {
+            font-family: Calibri;
         }
+
+        .block {
+            display: block;
+        }
+
+        .text {
+            margin-bottom: 10px;
+        }
+
+        .inline {
+            display: inline-block;
+        }
+
+        .api {
+            padding: 5px;
+            width: 350px;
+        }
+
+        .label {
+            width: 150px;
+            margin-right: 20px;
+        }
+
+        .container {
+            width: 350px;
+            border: 1px solid black;
+            padding: 10px;
+        }
+
         .header {
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        .inline {
-            display: inline-block;
-        }
-        .block {
-            display: block;
-        }
-        .label {
-            width: 150px;
-            margin-right: 20px;
-        }
-        .text {
-            margin-bottom: 20px;
-        }
-        .api {
-            padding: 5px;
-            width: 450px;
+
+        .section {
+            margin-left: 5px;
+            margin-top: 5px;
+            margin-right: 5px;
+            vertical-align: top;
         }
     </style>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- //////////////////////////////////////////////// Queries ///////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -49,72 +72,20 @@
 
         $(document).ready(function () {
 
-            $(".student-get").click(function () {
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                alert("Getting from <api/Students>.")
-
-                var minimumGrade = $(".student-min-grade").val();
-
-                if (minimumGrade.length > 0) {
-                    alert("Minimum grade filter is: " + minimumGrade + ".");
-                }
-
-                $.ajax({
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    data: { minimumGrade: minimumGrade },
-                    'type': 'GET',
-                    'url': "api/Students",
-                    success: function (data) {
-                        alert("POST Success");
-                        alert(JSON.stringify(data));
-                    },
-                    error: function () {
-                        alert("POST Error");
-                    },
-                    complete: function (xhr, textStatus) {
-                        alert("Response Code: " + xhr.status);
-                    }
-                });
-            });
-
-            $(".student-post").click(function () {
-
-                alert("Posting to <api/Students>.");
-
-                $.ajax({
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    'type': 'POST',
-                    'url': "api/Students",
-                    success: function () {
-                        alert("POST Success");
-                    },
-                    error: function () {
-                        alert("POST Error");
-                    },
-                    complete: function (xhr, textStatus) {
-                        alert("Response Code: " + xhr.status);
-                    }
-                });
-            });
-
-            $(".student-add").click(function () {
+            $(".add-new-student").click(function () {
 
                 var payloadJsonObject =
                     {
-                        "name": $(".student-name").val(),
-                        "id": parseInt($(".student-id").val()),
-                        "grade": parseInt($(".student-grade").val())
+                        "name": $(".add-new-student-name").val(),
+                        "id": parseInt($(".add-new-student-id").val())
                     };
 
                 var payloadJsonString = JSON.stringify(payloadJsonObject);
 
-                alert("Posting to <api/Students> with the JSON Payload <" + payloadJsonString + ">.")
+                alert("Posting to <api/AddStudent> with the JSON Payload <" + payloadJsonString + ">.")
 
                 $.ajax({
                     headers: {
@@ -135,40 +106,347 @@
                     }
                 });
             });
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            $(".add-new-course").click(function () {
+
+                var payloadJsonObject =
+                    {
+                        "name": $(".add-new-course-name").val(),
+                        "id": parseInt($(".add-new-course-id").val())
+                    };
+
+                var payloadJsonString = JSON.stringify(payloadJsonObject);
+
+                alert("Posting to <api/AddCourse> with the JSON Payload <" + payloadJsonString + ">.")
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    'type': 'POST',
+                    'url': "api/AddCourse",
+                    'data': payloadJsonString,
+                    success: function () {
+                        alert("POST Success");
+                    },
+                    error: function () {
+                        alert("POST Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            $(".add-student-to-course").click(function () {
+
+                var payloadJsonObject =
+                    {
+                        "StudentID": $(".add-student-to-course-student-id").val(),
+                        "CourseID": parseInt($(".add-student-to-course-course-id").val())
+                    };
+
+                var payloadJsonString = JSON.stringify(payloadJsonObject);
+
+                alert("Posting to <api/AddStudentToCourse> with the JSON Payload <" + payloadJsonString + ">.")
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    'type': 'POST',
+                    'url': "api/AddStudentToCourse",
+                    'data': payloadJsonString,
+                    success: function () {
+                        alert("POST Success");
+                    },
+                    error: function () {
+                        alert("POST Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            $(".remove-student-from-course").click(function () {
+
+                var payloadJsonObject =
+                    {
+                        "StudentID": $(".remove-student-from-course-student-id").val(),
+                        "CourseID": parseInt($(".remove-student-from-course-course-id").val())
+                    };
+
+                var payloadJsonString = JSON.stringify(payloadJsonObject);
+
+                alert("Posting to <api/RemoveStudentFromCourse> with the JSON Payload <" + payloadJsonString + ">.")
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    'type': 'POST',
+                    'url': "api/RemoveStudentFromCourse",
+                    'data': payloadJsonString,
+                    success: function () {
+                        alert("POST Success");
+                    },
+                    error: function () {
+                        alert("POST Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            $(".set-student-grade").click(function () {
+
+                var payloadJsonObject =
+                    {
+                        "StudentID": $(".set-student-grade-student-id").val(),
+                        "CourseID": parseInt($(".set-student-grade-course-id").val()),
+                        "Score": parseInt($(".set-student-grade-score").val())
+                    };
+
+                var payloadJsonString = JSON.stringify(payloadJsonObject);
+
+                alert("Posting to <api/SetStudentGrade> with the JSON Payload <" + payloadJsonString + ">.")
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    'type': 'POST',
+                    'url': "api/SetStudentGrade",
+                    'data': payloadJsonString,
+                    success: function () {
+                        alert("POST Success");
+                    },
+                    error: function () {
+                        alert("POST Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            $(".get-all-students").click(function () {
+
+                alert("Getting from <api/Students>.")
+
+                var onlyShowStudentsFailingACourse = $(".only-show-students-failing-a-course").is(':checked');
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    data: { IsChecked: onlyShowStudentsFailingACourse },
+                    'type': 'GET',
+                    'url': "api/Students",
+                    success: function (data) {
+                        alert("GET Success");
+                        alert(JSON.stringify(data));
+                    },
+                    error: function () {
+                        alert("GET Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            $(".get-all-courses").click(function () {
+
+                alert("Getting from <api/Courses>.");
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    'type': 'GET',
+                    'url': "api/Courses",
+                    success: function (data) {
+                        alert("GET Success");
+                        alert(JSON.stringify(data));
+                    },
+                    error: function () {
+                        alert("GET Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            $(".clear-session-data").click(function () {
+
+                alert("Posting to <api/Courses>.");
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    'type': 'POST',
+                    'url': "api/Courses",
+                    success: function () {
+                        alert("POST Success");
+                    },
+                    error: function () {
+                        alert("POST Error");
+                    },
+                    complete: function (xhr, textStatus) {
+                        alert("Response Code: " + xhr.status);
+                    }
+                });
+            });
+
         });
 
     </script>
 
-    <div class="container">
-        <div class="header">Get All Students</div>
-        <div class="block">
-            <div class="inline label">Minimum Grade Filter</div>
-            <input class="inline text student-min-grade" type="text" />
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- /////////////////////////////////////////////// BODY ///////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div class="inline section">
+
+        <div class="container">
+            <div class="header">Add New Student</div>
+            <div class="block">
+                <div class="inline label">Student Name</div>
+                <input class="inline text add-new-student-name" type="text" />
+            </div>
+            <div class="block">
+                <div class="inline label">Student ID</div>
+                <input class="inline text add-new-student-id" type="text" />
+            </div>
+            <input class="api add-new-student" type="button" value="AddStudent.POST" />
         </div>
-        <input class="api student-get" type="button" value="StudentsController.GET" />
+
+        <div class="container">
+            <div class="header">Add New Course</div>
+            <div class="block">
+                <div class="inline label">Course Name</div>
+                <input class="inline text add-new-course-name" type="text" />
+            </div>
+            <div class="block">
+                <div class="inline label">Course ID</div>
+                <input class="inline text add-new-course-id" type="text" />
+            </div>
+            <input class="api add-new-course" type="button" value="AddCourse.POST" />
+        </div>
+
     </div>
 
-    <div class="container">
-        <div class="header">Add New Student</div>
-        <div class="block">
-            <div class="inline label">Student Name</div>
-            <input class="inline text student-name" type="text" />
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div class="inline section">
+
+        <div class="container">
+            <div class="header">Add Student to Course</div>
+            <div class="block">
+                <div class="inline label">Student ID</div>
+                <input class="inline text add-student-to-course-student-id" type="text" />
+            </div>
+            <div class="block">
+                <div class="inline label">Course ID</div>
+                <input class="inline text add-student-to-course-course-id" type="text" />
+            </div>
+            <input class="api add-student-to-course" type="button" value="AddStudentToCourse.POST" />
         </div>
-        <div class="block">
-            <div class="inline label">Student LID</div>
-            <input class="inline text student-id" type="text" />
+
+        <div class="container">
+            <div class="header">Remove Student from Course</div>
+            <div class="block">
+                <div class="inline label">Student ID</div>
+                <input class="inline text remove-student-from-course-student-id" type="text" />
+            </div>
+            <div class="block">
+                <div class="inline label">Course ID</div>
+                <input class="inline text remove-student-from-course-course-id" type="text" />
+            </div>
+            <input class="api remove-student-from-course" type="button" value="RemoveStudentFromCourse.POST" />
         </div>
-        <div class="block">
-            <div class="inline label">Student Grade</div>
-            <input class="inline text student-grade" type="text" />
+
+        <div class="container">
+            <div class="header">Set Student Grade</div>
+            <div class="block">
+                <div class="inline label">Student ID</div>
+                <input class="inline text set-student-grade-student-id" type="text" />
+            </div>
+            <div class="block">
+                <div class="inline label">Course ID</div>
+                <input class="inline text set-student-grade-course-id" type="text" />
+            </div>
+            <div class="block">
+                <div class="inline label">Score (0-100)</div>
+                <input class="inline text set-student-grade-score" type="text" />
+            </div>
+            <input class="api set-student-grade" type="button" value="SetStudentGrade.POST" />
         </div>
-        <input class="api student-add" type="button" value="AddStudentController.POST" />
+
     </div>
 
-    <div class="container">
-        <div class="header">Remove All Students</div>
-        <input class="api student-post" type="button" value="StudentsController.POST" />
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div class="inline section">
+
+        <div class="container">
+            <div class="header">Get All Students</div>
+            <div class="block">
+                <div class="inline label">Only Show Students Failing a Course</div>
+                <input class="inline text only-show-students-failing-a-course" type="checkbox" />
+            </div>
+            <input class="api get-all-students" type="button" value="Students.GET" />
+        </div>
+
+        <div class="container">
+            <div class="header">Get All Courses</div>
+            <input class="api get-all-courses" type="button" value="Courses.GET" />
+        </div>
+
+        <div class="container">
+            <div class="header">Clear Session Data</div>
+            <input class="api clear-session-data" type="button" value="Courses.POST" />
+        </div>
+
     </div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 </body>
 
