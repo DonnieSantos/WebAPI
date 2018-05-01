@@ -1,4 +1,4 @@
-# Microsoft .NET Web API Tutorial
+# Microsoft ASP.NET Core Web API Tutorial
 
 ## Step 1.) In Visual Studio 2017, create a new ASP.NET Core Web Application.
 
@@ -331,7 +331,7 @@ This is live Web API Server Session Data being retrieved based on our unique cli
 
   
 * ### Parameters
-  * You can use URL parameters to to pretty much anything.
+  * You can use URL parameters to do pretty much anything.
   * Just don't use them as an easy, hacky way to do things that may be better with a different controller.
 
     ## localhost:63557/api/items?maxWeight=100
